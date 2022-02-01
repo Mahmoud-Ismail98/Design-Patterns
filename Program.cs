@@ -1,15 +1,24 @@
 ﻿using System;
 using DesignPatterns.singleton;
+using DesignPatterns.Builder;
 using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.XPath;
+//using Newtonsoft.Json;
 
 
 namespace DesignPatterns
 {
     class Program
     {
+        static void WriteColoredLine(
+        string text, ConsoleColor color = ConsoleColor.Red)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(text);
+        }
+
         static void Main(string[] args)
         {
             //Singleton Pattern - Lazy Initialization Implementation
@@ -43,7 +52,7 @@ namespace DesignPatterns
                 }); 
             */
             #region prototype Implementation
-            EmployeePrototype tempEmp1 = new TempEmployee();
+            /*EmployeePrototype tempEmp1 = new TempEmployee();
             tempEmp1.Name = "Amr";
             tempEmp1.Id = 18;
             tempEmp1.EmpAddress = new Address { City = "Giza", Building = "B1", StreetName = "Alharm" };
@@ -65,8 +74,26 @@ namespace DesignPatterns
             Console.WriteLine("========= Temp Emp 1 After Change =============");
             Console.WriteLine(tempEmp1.ToString());
             Console.WriteLine("========= Temp Emp 2 ==========================");
-            Console.WriteLine(tempEmp2.ToString());
+            Console.WriteLine(tempEmp2.ToString()); */
 
+            #endregion
+
+            #region Builder
+
+            WriteColoredLine("***Builder Pattern***",ConsoleColor.Blue);
+            Director director = new Director();
+            IBuilder carBuilder = new Car("Jeep");
+            IBuilder motorCycleBuilder = new MotorCycle("Honda");
+
+            // Making Car
+            director.Construct(carBuilder);
+            Product car = carBuilder.GetVehicle();
+            WriteColoredLine($"Car {car.Show()}");
+            
+            //Making MotorCycle
+            director.Construct(motorCycleBuilder);
+            Product motorCycle = motorCycleBuilder.GetVehicle();
+            WriteColoredLine($"MotorCycle {motorCycle.Show()}");
             #endregion
             Console.ReadKey();
         }
