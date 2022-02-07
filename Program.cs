@@ -1,6 +1,7 @@
 ﻿using System;
 using DesignPatterns.singleton;
 using DesignPatterns.Builder;
+using DesignPatterns.Factory;
 using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
@@ -79,7 +80,7 @@ namespace DesignPatterns
             #endregion
 
             #region Builder
-
+            /*
             WriteColoredLine("***Builder Pattern***",ConsoleColor.Blue);
             Director director = new Director();
             IBuilder carBuilder = new Car("Jeep");
@@ -94,6 +95,22 @@ namespace DesignPatterns
             director.Construct(motorCycleBuilder);
             Product motorCycle = motorCycleBuilder.GetVehicle();
             WriteColoredLine($"MotorCycle {motorCycle.Show()}");
+            */
+            #endregion
+
+            #region Factory Method
+            string cardNumber, bankCode;
+
+            BankFactory bankFactory = new BankFactory();
+
+            WriteColoredLine("Enter your card number", ConsoleColor.Cyan);
+            cardNumber = Console.ReadLine();
+            bankCode = cardNumber.Substring(0, 6);
+            
+            IBank bank = bankFactory.GetBank(bankCode) ;
+
+            WriteColoredLine(bank.Withdraw());
+
             #endregion
             Console.ReadKey();
         }

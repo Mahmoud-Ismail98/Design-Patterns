@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +50,11 @@
     <Compile Include="Builder\IBuilder.cs" />
     <Compile Include="Builder\MotorCycle.cs" />
     <Compile Include="Builder\Product.cs" />
+    <Compile Include="Factory\BankA.cs" />
+    <Compile Include="Factory\BankB.cs" />
+    <Compile Include="Factory\BankFactory.cs" />
+    <Compile Include="Factory\IBank.cs" />
+    <Compile Include="Factory\IBankFactory.cs" />
     <Compile Include="Prototype\Address.cs" />
     <Compile Include="Prototype\EmployeePrototype.cs" />
     <Compile Include="Program.cs" />
